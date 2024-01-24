@@ -39,16 +39,27 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'rest_framework',
-    'rest_framework.authtoken',
+    'djoser',
+    'rest_framework_simplejwt',
     'corsheaders',
 
 ]
 
+DJOSER = {
+    'LOGIN_FIELD': 'email',
+    'HIDE_USERS': False,
+    'SERIALIZERS': {
+        'user_create': 'blog.serializers.UserCreateSerializer',
+    },
+}
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ],
+    'djangorestframework_simplejwt.authentication.JWTAuthentication',
+],
 }
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
